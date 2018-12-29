@@ -1,0 +1,30 @@
+- config:
+      name: "录入预定"
+      request:
+        base_url: http://xt05.colorcun.com:10006
+      variables:
+        - sid: "154"
+        - rdate: ${getrdate()}
+        - pnum: 8
+        - rname: "接口测试"
+        - sex: 1
+        - phone: 18628453650
+        - cusdem: "自动化接口测试"
+        - note_name: "测试记录"
+        - ddate: ${getddate()}
+        - statuss: 2                       #状态：0：待确认，1：已定座，2：确认到店（到店），3：用餐完成（离店），4：取消预定
+- test:
+    name: "获取商家座位信息"
+    api: api_GetTableList($sid,$rdate,$pnum)
+- test:
+    name: "录入预定信息"
+    api: api_SetReserveInfo($sid,$tid,$pnum,$rname,$sex,$phone,$cusdem,$note_name,$rdate,$ddate)
+- test:
+    name: "获取服务员"
+    api: api_SellerInfo($sid)
+- test:
+    name: "设置客户经理"
+    api: api_SetReserveCusman($rid,$cusman_id,$cusman)
+- test:
+    name: "修改当前预定状态"
+    api: api_SetReserveStatus($rid,$statuss)

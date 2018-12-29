@@ -1,0 +1,14 @@
+- api:
+    name: "获取服务员信息"
+    def: api_SellerInfo($sid)
+    request:
+      url: ?service=App.Reserve.SellerInfo
+      method: POST
+      data:
+        seller_id: $sid
+    extract:
+      - cusman_id: content.data.manager.0.id
+      - cusman: content.data.manager.0.nick_name
+    validate:
+      - eq: ["content.ret",200]
+      - eq: ["ok",True]

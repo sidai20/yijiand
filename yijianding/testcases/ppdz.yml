@@ -1,0 +1,24 @@
+- config:
+      name: "老顾客订座"
+      request:
+        base_url: http://xt05.colorcun.com:10006
+      variables:
+        - sid: "154"
+        - rdate: ${getrdate()}
+        - pnum: 8
+        - keywords: 1862845
+        - note_name: "测试记录"
+        - ddate: ${getddate()}
+        - action: 1
+- test:
+    name: "获取商家座位信息"
+    api: api_GetTableList($sid,$rdate,$pnum)
+- test:
+    name: "获取老顾客信息"
+    api: api_GetReserveUser($keywords,$sid)
+- test:
+    name: "录入预定信息"
+    api: api_SetReserveInfo($sid,$tid,$pnum,$rname,$sex,$phone,$cusdem,$note_name,$rdate,$ddate)
+- test:
+    name: "修改短信状态"
+    api: api_UpdateAction($rid,$action)

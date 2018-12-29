@@ -1,0 +1,17 @@
+- api:
+    name: "模糊匹配预订人信息"
+    def: api_GetReserveUser($keywords,$sid)
+    request:
+      url: ?service=App.Reserve.GetReserveUser
+      method: POST
+      data:
+        keywords: $keywords
+        sid: $sid
+    extract:
+      - rname: content.data.0.rname
+      - sex: content.data.0.sex
+      - phone: content.data.0.phone
+      - cusdem: content.data.0.cusdem
+    validate:
+      - eq: ["content.ret",200]
+      - eq: ["ok",True]

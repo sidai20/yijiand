@@ -1,0 +1,16 @@
+- api:
+    name: "获取桌位信息"
+    def: api_GetTableList($sid,$rdate,$pnum)
+    request:
+      url: ?service=App.Reserve.GetTableList
+      method: POST
+      data:
+        sid: $sid
+        rdate: $rdate
+        pnum: $pnum
+    extract:
+      - tid: content.data.0.list.0.id
+    validate:
+      - eq: ["content.ret",200]
+      - eq: ["ok",True]
+

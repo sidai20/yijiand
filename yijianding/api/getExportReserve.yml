@@ -1,0 +1,16 @@
+- api:
+    name: "导出数据"
+    def: api_ExportReserve($sid,$x,$y)
+    request:
+      url: ?service=App.Reserve.ExportReserve
+      method: POST
+      data:
+        sid: $sid
+        x: $x
+        y: $y
+    extract:
+      - png: content.data
+    validate:
+      - eq: ["content.ret",200]
+      - eq: ["ok",True]
+

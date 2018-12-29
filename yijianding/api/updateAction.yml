@@ -1,0 +1,13 @@
+- api:
+    name: "修改短信状态"
+    def: api_UpdateAction($rid,$action)
+    request:
+      url: ?service=App.Reserve.UpdateAction
+      method: POST
+      data:
+        rid: $rid
+        action: $action
+    validate:
+      - eq: ["content.ret",200]
+      - eq: ["ok",True]
+      - eq: ["${getAction($rid)}",1]

@@ -1,0 +1,13 @@
+- api:
+    name: "修改当前预定状态"
+    def: api_SetReserveStatus($rid,$statuss)
+    request:
+      url: ?service=App.Reserve.SetReserveStatus
+      method: POST
+      data:
+        rid: $rid
+        status: $statuss
+    validate:
+      - eq: ["content.ret",200]
+      - eq: ["ok",True]
+      - eq: ["$statuss","${getstatus($rid)}"]

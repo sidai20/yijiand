@@ -1,0 +1,14 @@
+- api:
+    name: "已预定列表"
+    def: api_GetReserveList($sid,$x,$y,$rdate)
+    request:
+      url: ?service=App.Reserve.GetReserveList
+      method: POST
+      data:
+        sid: $sid
+        x: $x
+        y: $y
+        rdate: $rdate
+    validate:
+      - eq: ["content.ret",200]
+      - eq: ["ok",True]

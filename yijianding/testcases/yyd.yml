@@ -1,0 +1,19 @@
+- config:
+      name: "已预定"
+      request:
+        base_url: http://xt05.colorcun.com:10006
+      variables:
+        - sid: "154"
+        - x: 1
+        - y: 10
+        - rdate: ${getrdate()}
+        - keywords: 186
+- test:
+    name: "已预定列表"
+    api: api_GetReserveList($sid,$x,$y,$rdate)
+- test:
+    name: "导出数据"
+    api: api_ExportReserve($sid,$x,$y)
+- test:
+    name: "搜索预定"
+    api: api_SearchList($sid,$x,$y,$keywords,$rdate)

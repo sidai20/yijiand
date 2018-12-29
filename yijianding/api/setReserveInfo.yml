@@ -1,0 +1,27 @@
+- api:
+    name: "录入订座信息"
+    def: api_SetReserveInfo($sid,$tid,$pnum,$rname,$sex,$phone,$cusdem,$note_name,$rdate,$ddate)
+    request:
+      url: ?service=App.Reserve.SetReserveInfo
+      method: POST
+      data:
+        sid: $sid
+        tid: $tid
+        pnum: $pnum
+        rname: $rname
+        sex: $sex
+        phone: $phone
+        cusdem: $cusdem
+        note_name: $note_name
+        rdate: $rdate
+        ddate: $ddate
+    extract:
+      - rid: content.data.id
+      - status: content.data.status
+    validate:
+      - eq: ["content.ret",200]
+      - eq: ["ok",True]
+      - eq: ["$status","${getstatus($rid)}"]
+
+
+

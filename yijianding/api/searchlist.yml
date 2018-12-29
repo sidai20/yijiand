@@ -1,0 +1,15 @@
+- api:
+    name: "搜索预定"
+    def: api_SearchList($sid,$x,$y,$keywords,$rdate)
+    request:
+      url: ?service=App.Reserve.GetReserveList
+      method: POST
+      data:
+        sid: $sid
+        x: $x
+        y: $y
+        keywords: $keywords
+        rdate: $rdate
+    validate:
+      - eq: ["content.ret",200]
+      - eq: ["ok",True]

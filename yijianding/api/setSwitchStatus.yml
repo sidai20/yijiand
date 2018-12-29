@@ -1,0 +1,13 @@
+- api:
+    name: "桌位启停"
+    def: api_SetSwitchStatus($tid,$status)
+    request:
+      url: ?service=App.Reserve.SetSwitchStatus
+      method: POST
+      data:
+        id: $tid
+        status: $status
+    validate:
+      - eq: ["content.ret",200]
+      - eq: ["ok",True]
+

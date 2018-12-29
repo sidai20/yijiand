@@ -1,0 +1,15 @@
+- api:
+    name: "设置客户经理"
+    def: api_SetReserveCusman($rid,$cusman_id,$cusman)
+    request:
+      url: ?service=App.Reserve.SetReserveCusman
+      method: POST
+      data:
+        rid: $rid
+        cusman_id: $cusman_id
+        cusman: $cusman
+    validate:
+      - eq: ["content.ret",200]
+      - eq: ["ok",True]
+
+

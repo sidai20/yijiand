@@ -1,0 +1,15 @@
+- config:
+      name: "启停桌位"
+      request:
+        base_url: http://xt05.colorcun.com:10006
+      variables:
+        - sid: "154"
+        - rdate: ${getrdate()}
+        - pnum: 8
+        - status: 0
+- test:
+    name: "获取商家座位信息"
+    api: api_GetTableList($sid,$rdate,$pnum)
+- test:
+    name: "桌位启停"
+    api: api_SetSwitchStatus($tid,$status)

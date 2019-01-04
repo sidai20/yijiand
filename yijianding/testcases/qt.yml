@@ -1,7 +1,7 @@
 - config:
       name: "启停桌位"
       request:
-        base_url: http://xt05.colorcun.com:10006
+        base_url: 
       variables:
         - sid: "154"
         - rdate: ${getrdate()}
